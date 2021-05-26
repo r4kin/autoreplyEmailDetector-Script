@@ -1,0 +1,19 @@
+public class YRK_Autoemail_Detector {
+    ////Rakin Mohammed 2021/02/20 autoemail detector script
+    private static void detectAutoresponse(){ 
+        	Autoresponse_Blacklist__mdt[] errorRecords = [SELECT MasterLabel, Body_Text__c from Autoresponse_Blacklist__mdt]; //Retrieves Autoreply Word Blacklist metadata from Salesforce in an object
+        	Set<String> errorWords = new Set<String>();
+    
+        	for(Autoresponse_Blacklist__mdt record: errorRecords){
+            		errorWords.add(record.Body_Text__c); //Add metadata records to the string set
+        	}
+    
+        	for(Case thisCase : (List<Case>)Trigger.new){ //Iterate through list of all emails that create a trigger on case creation
+            		for(String words: errorWords){ //Iterate through all autoreply keywords 
+                		String temp = thisCase.comments;
+                		if(temp.Contains(words)) //If case comments contains keyword, add error message to the respective case
+                    			thisCase.addError('Not saving Automatic Reply');
+            		}    
+        	}
+	}
+}

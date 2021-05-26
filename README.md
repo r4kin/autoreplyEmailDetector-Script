@@ -1,4 +1,4 @@
-# autoEmailDetector*
+# autoEmailDetector
 
 Introduction -------------
 The Apex Class, "autoEmailDetector_SCRIPT.txt", is intended to use Salesforce Metadata todetect autoreply emails that could cause feed back loops in Report a Problem. Using a custom Metadata object, 

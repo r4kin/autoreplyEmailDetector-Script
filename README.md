@@ -1,4 +1,4 @@
-# autoEmailDetector
+# autoreplyEmailDetector Script
 
 Introduction -------------
 
